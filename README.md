@@ -7,6 +7,4 @@ In order for Hardware info to work, run these commands in cmd (windows):
 
 python -m pip install –upgrade pip
 
-pip install 
-
 pip install py-cpuinfo
