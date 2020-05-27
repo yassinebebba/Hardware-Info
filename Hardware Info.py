@@ -1,9 +1,30 @@
 import cpuinfo
 from tkinter import *
 from tkinter import ttk
+import psutil
+from itertools import count
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 
 class Hardware:
+    def cpu_load_start(self):
+        plt.style.use("fivethirtyeight")
+        time = []
+        load_val = []
+        time_sec = count()
+
+        def cpu_load(i):
+            time.append(next(time_sec))
+            load_val.append(psutil.cpu_percent(interval=0))
+            plt.cla()
+            plt.plot(time, load_val, label="CPU Load in % over time (s)")
+            plt.legend(loc="upper left")
+            plt.tight_layout()
+
+        monitor = FuncAnimation(plt.gcf(), cpu_load, interval=1000)
+        plt.show()
+
     def __init__(self, root):
         root.title("Hardware info")
         root.iconbitmap("hardware_icon.ico")
@@ -74,6 +95,8 @@ class Hardware:
                                                                                     sticky="W",
                                                                                     pady=2)
         self.cpu_cache_frame.grid(row=1, column=0)
+        self.cpu_temp_monitor = ttk.Button(cpu, text="CPU Load Monitor", command=lambda: self.cpu_load_start())
+        self.cpu_temp_monitor.grid(row=2, column=0, sticky="W")
 
 
 # Making the window object
