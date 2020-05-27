@@ -8,3 +8,7 @@ In order for Hardware info to work, run these commands in cmd (windows):
 python -m pip install –upgrade pip
 
 pip install py-cpuinfo
+
+pip install psutil
+
+pip install matplotlib
