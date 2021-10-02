@@ -11,4 +11,4 @@ pip install py-cpuinfo
 
 pip install psutil
 
-pip install matplotlib
+pip install matplotlib 
